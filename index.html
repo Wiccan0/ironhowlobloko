@@ -83,7 +83,7 @@
         radial-gradient(closest-side at 48% 76%, rgba(255,179,217,.14), transparent 58%);
       filter: blur(28px) saturate(120%);
       opacity:.85;
-      animation: floaty 10s ease-in-out infinite alternate;
+      animation: floaty 16s ease-in-out infinite alternate;
       pointer-events:none;
     }
     @keyframes floaty{
@@ -93,7 +93,7 @@
 
     .wrap{
       min-height:100%;
-      padding: calc(18px + var(--safeT)) calc(18px + var(--safeR)) calc(28px + 96px + var(--safeB)) calc(18px + var(--safeL));
+      padding: calc(18px + var(--safeT)) calc(18px + var(--safeR)) calc(24px + var(--safeB)) calc(18px + var(--safeL));
       display:flex;
       justify-content:center;
     }
@@ -128,7 +128,7 @@
           rgba(124,247,255,.0));
       filter: blur(34px);
       opacity:.55;
-      animation: spin 16s linear infinite;
+      animation: spin 22s linear infinite;
       pointer-events:none;
       mix-blend-mode: screen;
     }
@@ -210,7 +210,7 @@
       backdrop-filter: blur(14px) saturate(145%);
       -webkit-backdrop-filter: blur(14px) saturate(145%);
       transform: translateZ(0);
-      transition: transform .25s ease, background .25s ease, border-color .25s ease;
+      transition: transform 360ms cubic-bezier(.16,1,.3,1), background 360ms cubic-bezier(.16,1,.3,1), border-color 360ms cubic-bezier(.16,1,.3,1);
       user-select:none;
     }
     .pill:hover{ transform: translateY(-1px); background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.26); }
@@ -231,11 +231,11 @@
       -webkit-backdrop-filter: blur(16px) saturate(155%);
       overflow:hidden;
       position:relative;
-      transform: translateY(12px);
+      transform: translate3d(0, 8px, 0);
       opacity:0;
-      transition: transform .7s cubic-bezier(.2,.9,.2,1), opacity .7s ease;
+      transition: transform 900ms cubic-bezier(.16,1,.3,1), opacity 900ms cubic-bezier(.16,1,.3,1); will-change: transform, opacity;
     }
-    .card.reveal{ transform: translateY(0); opacity:1; }
+    .card.reveal{ transform: translate3d(0,0,0); opacity:1; }
     .card::before{
       content:"";
       position:absolute; inset:-1px;
@@ -304,103 +304,18 @@
       text-decoration:none;
       font-size: 13px;
       box-shadow: 0 10px 22px rgba(0,0,0,.22);
-      transition: transform .25s ease, background .25s ease, border-color .25s ease;
+      transition: transform 360ms cubic-bezier(.16,1,.3,1), background 360ms cubic-bezier(.16,1,.3,1), border-color 360ms cubic-bezier(.16,1,.3,1);
       user-select:none;
       flex: 0 0 auto;
     }
     .row:hover .cta{ transform: translateY(-1px); background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.26); }
     .row:active .cta{ transform: translateY(0) scale(.98); }
 
-    /* Bottom dock */
-    .dock{
-      position:fixed;
-      left:0; right:0; bottom:0;
-      padding: 10px calc(14px + var(--safeR)) calc(12px + var(--safeB)) calc(14px + var(--safeL));
-      display:flex;
-      justify-content:center;
-      pointer-events:none;
-    }
-    .dockInner{
-      width:min(440px, 100%);
-      pointer-events:auto;
-      border-radius: 999px;
-      background: rgba(255,255,255,.10);
-      border: 1px solid rgba(255,255,255,.20);
-      box-shadow: 0 22px 60px rgba(0,0,0,.55);
-      backdrop-filter: blur(18px) saturate(160%);
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      padding: 10px 12px;
-      position:relative;
-      overflow:hidden;
-    }
-    .dockInner::before{
-      content:"";
-      position:absolute; inset:-60%;
-      background: radial-gradient(closest-side at 50% 50%, rgba(255,255,255,.22), transparent 58%);
-      opacity:.35;
-      filter: blur(24px);
-      animation: dockGlow 8s ease-in-out infinite alternate;
-      pointer-events:none;
-    }
-    @keyframes dockGlow{
-      from{ transform: translateX(-8%) translateY(0); }
-      to{ transform: translateX(8%) translateY(-2%); }
-    }
-    .dockBtn{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.14);
-      color: var(--text);
-      text-decoration:none;
-      font-size: 13px;
-      user-select:none;
-      transition: transform .25s ease, background .25s ease, border-color .25s ease;
-      position:relative;
-      z-index:1;
-    }
-    .dockBtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22); }
-    .dockBtn:active{ transform: translateY(0) scale(.985); }
-    .dockBtn svg{ width:18px; height:18px; opacity:.92; }
-    .dockBtn.primary{
-      background: linear-gradient(180deg, rgba(124,247,255,.18), rgba(183,163,255,.10));
-      border-color: rgba(255,255,255,.24);
-    }
-
     /* tap highlight */
     a, button{ -webkit-tap-highlight-color: rgba(124,247,255,.18); }
 
-    /* toast */
-    .toast{
-      position:fixed;
-      left:50%;
-      bottom: calc(96px + env(safe-area-inset-bottom) + 16px);
-      transform: translateX(-50%);
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.10);
-      border: 1px solid rgba(255,255,255,.22);
-      backdrop-filter: blur(16px) saturate(160%);
-      -webkit-backdrop-filter: blur(16px) saturate(160%);
-      box-shadow: 0 18px 44px rgba(0,0,0,.45);
-      color: rgba(255,255,255,.92);
-      font-size: 13px;
-      z-index: 9999;
-      opacity:0;
-      transition: opacity .25s ease, transform .25s ease;
-      pointer-events:none;
-    }
-    .toast.show{ opacity:1; transform: translateX(-50%) translateY(-2px); }
-
     @media (prefers-reduced-motion: reduce){
-      .aurora, .hero::after, .dockInner::before, .avatarWrap::before{ animation:none !important; }
+      .aurora, .hero::after, .avatarWrap::before{ animation:none !important; }
       .card{ transition:none !important; transform:none !important; opacity:1 !important; }
       .pill, .cta, .dockBtn{ transition:none !important; }
     }
@@ -433,39 +348,7 @@
       <section class="section" id="cards" aria-label="Ссылки"></section>
     </div>
   </main>
-
-  <footer class="dock" aria-label="Нижняя панель">
-    <div class="dockInner">
-      <a class="dockBtn" href="#" id="shareBtn" aria-label="Поделиться ссылкой">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 16V3" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linecap="round"/>
-          <path d="M8 6.5 12 3l4 3.5" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M5 12v6a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-6" stroke="rgba(255,255,255,.72)" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        Поделиться
-      </a>
-
-      <a class="dockBtn primary" href="#" id="mainBtn" aria-label="Открыть главную ссылку">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2l1.6 5.6L19 9l-5.4 1.4L12 16l-1.6-5.6L5 9l5.4-1.4L12 2Z" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M5 16l.8 2.8L9 20l-3.2 1.2L5 24l-.8-2.8L1 20l3.2-1.2L5 16Z" stroke="rgba(255,255,255,.55)" stroke-width="1.6" stroke-linejoin="round" transform="translate(0 -3)"/>
-        </svg>
-        Открыть
-      </a>
-
-      <a class="dockBtn" href="#" id="copyBtn" aria-label="Скопировать ссылку">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 9h10v12H9V9Z" stroke="rgba(255,255,255,.9)" stroke-width="2" />
-          <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="rgba(255,255,255,.62)" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        Копировать
-      </a>
-    </div>
-  </footer>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <script>
+<script>
     const CONFIG = {
       displayName: "ironhowl",
       tagline: "Мои соцсети и контакты — нажми, чтобы открыть ✨",
@@ -594,6 +477,10 @@
 
     function revealOnScroll(){
       const cards = Array.from(document.querySelectorAll(".card"));
+
+      // Subtle stagger for a premium, smooth feel
+      cards.forEach((c, i) => { c.style.transitionDelay = `${Math.min(i*60, 420)}ms`; });
+
       const io = new IntersectionObserver((entries) => {
         for(const e of entries){
           if(e.isIntersecting){
@@ -601,38 +488,18 @@
             io.unobserve(e.target);
           }
         }
-      }, { threshold: 0.18 });
+      }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+
       cards.forEach(c => io.observe(c));
 
+      // If page is short, reveal immediately (still with stagger)
       if(cards.length && window.innerHeight > document.body.scrollHeight - 8){
         cards.forEach(c => c.classList.add("reveal"));
       }
     }
 
-    function toast(text){
-      const t = $("#toast");
-      t.textContent = text;
-      t.classList.add("show");
-      clearTimeout(window.__toastT);
-      window.__toastT = setTimeout(() => t.classList.remove("show"), 1400);
-    }
-
-    function setupDock(){
-      const mainHref = safeHref(CONFIG.mainActionHref || CONFIG.links?.[0]?.href || "#");
-      const main = $("#mainBtn");
-      main.href = mainHref;
-      main.target = mainHref.startsWith("http") ? "_blank" : "_self";
-      main.rel = main.target === "_blank" ? "noopener noreferrer" : "";
-
-      $("#copyBtn").addEventListener("click", async (e) => {
-        e.preventDefault();
-        try{
-          await navigator.clipboard.writeText(location.href);
-          toast("Ссылка скопирована");
-        }catch{
-          toast("Не получилось скопировать");
-        }
-      });
+    
+          });
 
       $("#shareBtn").addEventListener("click", async (e) => {
         e.preventDefault();
@@ -653,27 +520,6 @@
     buildPills();
     buildCards();
     revealOnScroll();
-    setupDock();
-
-    // micro-parallax
-    const hero = document.querySelector(".hero");
-    let raf = null;
-    window.addEventListener("pointermove", (e) => {
-      if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      if(!hero) return;
-      const r = hero.getBoundingClientRect();
-      const cx = r.left + r.width/2, cy = r.top + r.height/2;
-      const dx = (e.clientX - cx) / r.width;
-      const dy = (e.clientY - cy) / r.height;
-      if(raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        hero.style.transform = `translateY(${Math.max(-2, Math.min(2, dy*3))}px)`;
-      });
-    }, { passive:true });
-
-    window.addEventListener("pointerleave", () => {
-      if(hero) hero.style.transform = "";
-    }, { passive:true });
-  </script>
+</script>
 </body>
 </html>
